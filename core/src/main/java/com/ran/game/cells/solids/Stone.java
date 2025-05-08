@@ -1,14 +1,12 @@
-package com.ran.mygame.cells.solids;
+package com.ran.game.cells.solids;
 
 import com.badlogic.gdx.graphics.Color;
-import com.ran.mygame.cells.Element;
-import com.ran.mygame.cells.types.Solid;
+import com.ran.game.cells.Element;
 
 
 public class Stone extends Solid {
     public Stone(int x, int y) {
-        super(Color.DARK_GRAY, x, y);
-        this.material = Material.STONE;
+        super(Color.DARK_GRAY, x, y, 0, false, 3);
     }
 
     @Override

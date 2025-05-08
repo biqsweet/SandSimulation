@@ -1,14 +1,12 @@
-package com.ran.mygame.cells.solids;
+package com.ran.game.cells.solids;
 
 
 import com.badlogic.gdx.graphics.Color;
-import com.ran.mygame.cells.Element;
-import com.ran.mygame.cells.types.Solid;
+import com.ran.game.cells.Element;
 
 public class Sand extends Solid {
     public Sand(int x, int y) {
-        super(Color.YELLOW, x, y);
-        this.material = Material.SAND;
+        super(Color.YELLOW, x, y, 3, true, 1);
     }
 
     @Override

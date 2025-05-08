@@ -1,13 +1,11 @@
-package com.ran.mygame.cells.liquids;
+package com.ran.game.cells.liquids;
 
 import com.badlogic.gdx.graphics.Color;
-import com.ran.mygame.cells.Element;
-import com.ran.mygame.cells.types.Liquid;
+import com.ran.game.cells.Element;
 
 public class Water extends Liquid {
     public Water(int x, int y) {
-        super(Color.BLUE, x, y);
-        this.material = Material.WATER;
+        super(Color.BLUE, x, y, 5, true, 2);
     }
 
     @Override

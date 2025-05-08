@@ -1,12 +1,10 @@
-package com.ran.mygame.cells.types;
+package com.ran.game.cells;
 
 import com.badlogic.gdx.graphics.Color;
-import com.ran.mygame.cells.Element;
 
 public class Empty extends Element {
     public Empty(int x, int y) {
-        super(Color.BLACK, x, y);
-        this.material = Material.EMPTY;
+        super(Color.BLACK, x, y, 0, true, 0);
     }
 
     @Override
