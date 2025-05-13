@@ -11,13 +11,16 @@ public abstract class Liquid extends Element {
     @Override
     public void applyGravity() {
         if (!move(0, 1)) {
-            if (!movedThisFrame) {
+            if (Math.random() < 0.5) {
                 for (int i = 0; i < spreadRate; i++) {
-                    if (Math.random() < 0.5) move(-1, 0);
-                    else move(1, 0);
+                    move(-1, 0);
+                }
+            } else {
+                for (int i = 0; i < spreadRate; i++) {
+                    move(1, 0);
+
                 }
             }
         }
     }
 }
-

@@ -1,6 +1,8 @@
 package com.ran.game.cells;
 
 import com.badlogic.gdx.graphics.Color;
+import com.ran.game.cells.liquids.Liquid;
+import com.ran.game.cells.solids.Solid;
 
 import static com.ran.game.Main.GRID;
 import static com.ran.game.Main.INPUT_HANDLER;
@@ -20,30 +22,45 @@ public abstract class Element {
         this.spreadRate = spreadRate;
         this.isMovable = isMovable;
         this.id = id;
-    }
-
-    public static boolean insideCircle(int centerX, int centerY, int x, int y, double radius) {
-        final double dx = centerX - x;
-        final double dy = centerY - y;
-        return dx * dx + dy * dy <= radius * radius;
-    }
-
-    public boolean move(int x, int y) {
-        if (INPUT_HANDLER.inBounds(this.x + x, this.y + y)) {
-            if (GRID[this.x + x][this.y + y] instanceof Empty) {
-                GRID[this.x + x][this.y + y] = cloneInto(this.x + x, this.y + y);
-                GRID[this.x][this.y] = new Empty(x, y);
-//                GRID[this.x][this.y].movedThisFrame = true;
-                GRID[this.x + x][this.y + y].movedThisFrame = true;
-                return true;
-            }
         }
+
+
+    public boolean move(int dx, int dy) {
+        if (movedThisFrame) return false;
+
+        final int targetX = x + dx;
+        final int targetY = y + dy;
+
+        if (!INPUT_HANDLER.inBounds(targetX, targetY)) return false;
+
+        final Element targetElement = GRID[targetX][targetY];
+
+        if (targetElement instanceof Empty) {
+            final Element movedElement = this.cloneInto(targetX, targetY);
+            movedElement.movedThisFrame = true;
+
+            GRID[targetX][targetY] = movedElement;
+            GRID[x][y] = new Empty(x, y);
+
+            return true;
+        }
+
+        if (targetElement instanceof Liquid && this instanceof Solid) {
+            final Element solidMoved = this.cloneInto(targetX, targetY);
+            final Element liquidMoved = targetElement.cloneInto(x, y);
+
+            solidMoved.movedThisFrame = true;
+            liquidMoved.movedThisFrame = true;
+
+            GRID[targetX][targetY] = solidMoved;
+            GRID[x][y] = liquidMoved;
+
+            return true;
+        }
+
         return false;
     }
 
-    public Color getColor() {
-        return color;
-    }
 
     public abstract void applyGravity();
 

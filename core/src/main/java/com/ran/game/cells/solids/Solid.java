@@ -11,13 +11,15 @@ public abstract class Solid extends Element {
 
     @Override
     public void applyGravity() {
+        if (move(0, 1)) return;
 
-        if (!move(0, 1)) {
-            if (!movedThisFrame) {
-                for (int i = 0; i < spreadRate; i++) {
-                    if (!move(-1, 1))
-                        move(1, 1);
-                }
+        final boolean tryLeftFirst = Math.random() < 0.5;
+
+        for (int i = 0; i < spreadRate; i++) {
+            if (tryLeftFirst) {
+                if (move(-1, 1) || move(1, 1)) return;
+            } else {
+                if (move(1, 1) || move(-1, 1)) return;
             }
         }
     }
