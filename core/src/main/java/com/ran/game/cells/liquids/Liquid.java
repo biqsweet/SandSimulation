@@ -18,7 +18,6 @@ public abstract class Liquid extends Element {
             } else {
                 for (int i = 0; i < spreadRate; i++) {
                     move(1, 0);
-
                 }
             }
         }

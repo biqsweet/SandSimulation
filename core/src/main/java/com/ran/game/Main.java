@@ -67,7 +67,7 @@ public class Main extends ApplicationAdapter {
 //                for (int y = GRID[x].length - 1; y >= 0; y--) {
                 if (!(GRID[x][y] instanceof Empty)) {
                     SHAPE_RENDERER.setColor(GRID[x][y].color);
-                    SHAPE_RENDERER.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE , CELL_SIZE );
+                    SHAPE_RENDERER.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                 }
             }
         }
@@ -77,9 +77,9 @@ public class Main extends ApplicationAdapter {
 
     private void logic() {
         FALL_TIMER += com.badlogic.gdx.Gdx.graphics.getDeltaTime();
-        if (FALL_TIMER >= 0.03) {
+        if (FALL_TIMER >= 0.005) {
             FALL_TIMER = 0;
-            boolean leftToRight = Math.random() < 0.5;
+            final boolean leftToRight = Math.random() < 0.5;
             for (int y = GRID[0].length - 1; y >= 0; y--) {
                 if (leftToRight) {
                     for (int x = 0; x < GRID.length; x++) {

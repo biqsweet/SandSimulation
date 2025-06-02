@@ -136,6 +136,7 @@ public class InputHandler implements InputProcessor {
     public boolean inBounds(int x, int y) {
         return x >= 0 && x < GRID.length && y >= 0 && y < GRID[x].length;
     }
+
     private boolean insideCircle(int centerX, int centerY, int x, int y, double radius) {
         final double dx = centerX - x;
         final double dy = centerY - y;

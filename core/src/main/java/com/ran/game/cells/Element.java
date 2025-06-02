@@ -22,7 +22,7 @@ public abstract class Element {
         this.spreadRate = spreadRate;
         this.isMovable = isMovable;
         this.id = id;
-        }
+    }
 
 
     public boolean move(int dx, int dy) {
